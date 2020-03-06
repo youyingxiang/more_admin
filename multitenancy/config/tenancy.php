@@ -11,7 +11,7 @@ return [
     | login page.
     |
     */
-    'name' => '知名购',
+    'name' => 'Laravel-admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>知名购</b> 后台管理',
+    'logo' => '<b>Laravel</b> admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,17 +34,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>知</b>',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Laravel-admin bootstrap setting
-    |--------------------------------------------------------------------------
-    |
-    | This value is the path of laravel-admin bootstrap file.
-    |
-    */
-    'bootstrap' => app_path('Admin/bootstrap.php'),
+    'logo_mini' => '<b>La</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,11 +48,11 @@ return [
     */
     'route' => [
 
-        'prefix' => env('ADMIN_ROUTE_PREFIX', 'admin'),
+        'prefix' => 'tenancy',
 
-        'namespace' => 'App\\Admin\\Controllers',
+        'namespace' => 'App\\Tenancy\\Controllers',
 
-        'middleware' => ['multi-session:path,/admin','web', 'admin'],
+        'middleware' => ['web', 'admin'],
     ],
 
     /*
@@ -75,7 +65,7 @@ return [
     | be set before running `artisan admin::install` to take effect.
     |
     */
-    'directory' => app_path('Admin'),
+    'directory' => app_path('Tenancy'),
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +75,7 @@ return [
     | Html title for all pages.
     |
     */
-    'title' => '知名购',
+    'title' => 'Admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -110,9 +100,7 @@ return [
     */
     'auth' => [
 
-        'controller' => App\Admin\Controllers\AuthController::class,
-
-        'guard' => 'admin',
+        'controller' => App\Tenancy\Controllers\AuthController::class,
 
         'guards' => [
             'admin' => [
@@ -126,19 +114,6 @@ return [
                 'driver' => 'eloquent',
                 'model'  => Encore\Admin\Auth\Database\Administrator::class,
             ],
-        ],
-
-        // Add "remember me" to login form
-        'remember' => false,
-
-        // Redirect to the specified URI when user is not authorized.
-        'redirect_to' => 'auth/login',
-
-        // The URIs that should be excluded from authorization.
-        'excepts' => [
-            'auth/login',
-            'auth/logout',
-            '_handle_action_',
         ],
     ],
 
@@ -174,7 +149,7 @@ return [
     'database' => [
 
         // Database connection for following tables.
-        'connection' => '',
+        'connection' => 'tenancy',
 
         // User tables and model.
         'users_table' => 'admin_users',
@@ -210,7 +185,7 @@ return [
     */
     'operation_log' => [
 
-        'enable' => false,
+        'enable' => true,
 
         /*
          * Only logging allowed methods in the list
@@ -227,30 +202,6 @@ return [
             'admin/auth/logs*',
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Indicates whether to check route permission.
-    |--------------------------------------------------------------------------
-    */
-    'check_route_permission' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Indicates whether to check menu roles.
-    |--------------------------------------------------------------------------
-    */
-    'check_menu_roles'       => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | User default avatar
-    |--------------------------------------------------------------------------
-    |
-    | Set a default avatar for newly created users.
-    |
-    */
-    'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
 
     /*
     |--------------------------------------------------------------------------
@@ -276,7 +227,7 @@ return [
     |    "skin-red", "skin-red-light", "skin-black", "skin-black-light".
     |
     */
-    'skin' => 'skin-black-light',
+    'skin' => 'skin-blue-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -290,7 +241,7 @@ return [
     | "sidebar-mini".
     |
     */
-    'layout' => ['sidebar-mini', 'fixed'],
+    'layout' => ['sidebar-mini', 'sidebar-collapse'],
 
     /*
     |--------------------------------------------------------------------------
@@ -307,11 +258,11 @@ return [
     | Show version at footer
     |--------------------------------------------------------------------------
     |
-    | Whether to display the version number of laravel-admin at the footer of
+    | Whether to display the version number of laravel-admim at the footer of
     | each page
     |
     */
-    'show_version' => false,
+    'show_version' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -321,11 +272,11 @@ return [
     | Whether to display the environment at the footer of each page
     |
     */
-    'show_environment' => false,
+    'show_environment' => true,
 
     /*
     |--------------------------------------------------------------------------
-    | Menu bind to permission
+    | Menu bind to permissionsymlink
     |--------------------------------------------------------------------------
     |
     | whether enable menu bind to a permission
@@ -339,42 +290,7 @@ return [
     |
     | Whether enable default breadcrumb for every page content.
     */
-    'enable_default_breadcrumb' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable/Disable assets minify
-    |--------------------------------------------------------------------------
-    */
-    'minify_assets' => [
-
-        // Assets will not be minified.
-        'excepts' => [
-
-        ],
-
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Enable/Disable sidebar menu search
-    |--------------------------------------------------------------------------
-    */
-    'enable_menu_search' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Alert message that will displayed on top of the page.
-    |--------------------------------------------------------------------------
-    */
-    'top_alert' => '',
-
-    /*
-    |--------------------------------------------------------------------------
-    | The global Grid action display class.
-    |--------------------------------------------------------------------------
-    */
-    'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
+    'enable_default_breadcrumb' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -396,8 +312,6 @@ return [
     |
     */
     'extensions' => [
-        'multitenancy' => [
-            'agent' => config_path('agent.php'),
-        ],
+
     ],
 ];
