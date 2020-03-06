@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<strong></strong>攻略生活管理',
+    'logo' => '<strong>攻略生活</strong>代理商后台',
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ return [
     */
     'auth' => [
 
-        //'controller' => App\Agent\Controllers\AuthController::class,
+       // 'controller' => App\Agent\Controllers\AuthController::class,
 
         'guards' => [
             'admin' => [
@@ -114,7 +114,7 @@ return [
         'providers' => [
             'admin' => [
                 'driver' => 'eloquent',
-                'model' => App\Models\Agent::class,
+                'model' => Encore\Admin\Auth\Database\Administrator::class,
             ],
         ],
         'remember' => false,
@@ -219,13 +219,13 @@ return [
     | Indicates whether to check route permission.
     |--------------------------------------------------------------------------
     */
-    'check_route_permission' => false,
+    'check_route_permission' => true,
     /*
     |--------------------------------------------------------------------------
     | Indicates whether to check menu roles.
     |--------------------------------------------------------------------------
     */
-    'check_menu_roles' => false,
+    'check_menu_roles' => true,
     /*
     |--------------------------------------------------------------------------
     | User default avatar

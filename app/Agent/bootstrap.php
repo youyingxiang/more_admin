@@ -37,3 +37,4 @@ Encore\Admin\Form::forget(['map', 'editor']);
 //\Encore\Admin\Admin::navbar(function (\Encore\Admin\Widgets\Navbar $navbar) {
 //    $navbar->right(new \Agent\Extensions\Nav\Links());
 //});
+//app('view')->prependNamespace('admin', resource_path('views/vendor/laravel-admin'));

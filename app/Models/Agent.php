@@ -34,4 +34,5 @@ class Agent extends Model implements AuthenticatableContract {
     use Authenticatable, Notifiable, HasPermissions;
     protected $table = 'agent';
     protected $fillable = ['username', 'password', 'name'];
+
 }
