@@ -3,6 +3,8 @@
 namespace Encore\Admin\Multitenancy;
 
 use Encore\Admin\Multitenancy\Console\InstallTenancyCommand;
+use Encore\Admin\Multitenancy\Console\MakeCommand;
+use Encore\Admin\Multitenancy\Console\TenancyMakeCommand;
 use Illuminate\Support\ServiceProvider;
 
 class MultitenancyServiceProvider extends ServiceProvider
@@ -54,6 +56,7 @@ class MultitenancyServiceProvider extends ServiceProvider
     {
         $this->commands([
             InstallTenancyCommand::class,
+            TenancyMakeCommand::class
         ]);
     }
 

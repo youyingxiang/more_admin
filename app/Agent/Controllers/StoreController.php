@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Admin\Controllers;
+namespace App\Agent\Controllers;
 
-use App\Models\Agent;
 use App\Models\Store;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -28,7 +27,7 @@ class StoreController extends AdminController
         $grid = new Grid(new Store());
         $grid->disableFilter();
         $grid->column('id', __('Id'));
-      //  $grid->column('username', __('用户名'));
+        //  $grid->column('username', __('用户名'));
 
         $grid->column('name', __('商户名'));
         $grid->column('agent.name', __('归属代理商'));
@@ -50,7 +49,7 @@ class StoreController extends AdminController
         $show->field('id', __('Id'));
         $show->field('username', __('用户名'));
         $show->field('name', __('商户名'));
-      //  $show->agent()->name("agent_id",__('归属代理商'));
+        //  $show->agent()->name("agent_id",__('归属代理商'));
         $show->field('created_at', __('创建时间'));
         $show->field('updated_at', __('更新时间'));
 
