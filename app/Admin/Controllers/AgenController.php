@@ -28,7 +28,7 @@ class AgenController extends AdminController
         $grid->disableFilter();
         $grid->column('id', __('Id'));
         $grid->column('username', __('用户名'));
-        $grid->column('name', __('姓名'));
+        $grid->column('name', __('代理商名'));
         $grid->column('created_at', __('创建时间'));
         $grid->column('updated_at', __('更新时间'));
 

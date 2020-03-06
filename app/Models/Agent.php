@@ -35,4 +35,8 @@ class Agent extends Model implements AuthenticatableContract {
     protected $table = 'agent';
     protected $fillable = ['username', 'password', 'name'];
 
+    public function sotre()
+    {
+        return $this->hasMany(Store::class);
+    }
 }

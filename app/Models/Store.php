@@ -8,4 +8,9 @@ class Store extends Model
 {
     //
     protected $table = 'store';
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class);
+    }
 }

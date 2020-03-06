@@ -12,4 +12,5 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('/agents',AgenController::class);
+    $router->resource('stores', StoreController::class);
 });

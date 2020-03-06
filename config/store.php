@@ -11,7 +11,7 @@ return [
     | login page.
     |
     */
-    'name' => '攻略生活',
+    'name' => '攻略生活商户后台',
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>攻略生活</b> 后台管理',
+    'logo' => '<strong>攻略生活</strong>商户后台',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,17 +34,9 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>攻略生活</b>',
+    'logo_mini' => '<b>攻略</b>',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Laravel-admin bootstrap setting
-    |--------------------------------------------------------------------------
-    |
-    | This value is the path of laravel-admin bootstrap file.
-    |
-    */
-    'bootstrap' => app_path('Admin/bootstrap.php'),
+    'bootstrap' => app_path('Store/bootstrap.php'),
 
     /*
     |--------------------------------------------------------------------------
@@ -58,11 +50,11 @@ return [
     */
     'route' => [
 
-        'prefix' => env('ADMIN_ROUTE_PREFIX', 'admin'),
+        'prefix' => 'store',
 
-        'namespace' => 'App\\Admin\\Controllers',
+        'namespace' => 'App\\Store\\Controllers',
 
-        'middleware' => ['multi-session:path,/admin','web', 'admin'],
+        'middleware' => ['multi-session:path,/store','web', 'admin'],
     ],
 
     /*
@@ -75,7 +67,7 @@ return [
     | be set before running `artisan admin::install` to take effect.
     |
     */
-    'directory' => app_path('Admin'),
+    'directory' => app_path('Store'),
 
     /*
     |--------------------------------------------------------------------------
@@ -110,13 +102,11 @@ return [
     */
     'auth' => [
 
-        'controller' => App\Admin\Controllers\AuthController::class,
-
-        'guard' => 'admin',
+       // 'controller' => App\Agent\Controllers\AuthController::class,
 
         'guards' => [
             'admin' => [
-                'driver'   => 'session',
+                'driver' => 'session',
                 'provider' => 'admin',
             ],
         ],
@@ -124,21 +114,17 @@ return [
         'providers' => [
             'admin' => [
                 'driver' => 'eloquent',
-                'model'  => Encore\Admin\Auth\Database\Administrator::class,
+                'model' => Encore\Admin\Auth\Database\Administrator::class,
             ],
         ],
-
-        // Add "remember me" to login form
         'remember' => false,
-
-        // Redirect to the specified URI when user is not authorized.
+        //        // Redirect to the specified URI when user is not authorized.
         'redirect_to' => 'auth/login',
-
-        // The URIs that should be excluded from authorization.
+        //        // The URIs that should be excluded from authorization.
         'excepts' => [
             'auth/login',
             'auth/logout',
-            '_handle_action_',
+            'auth/auto/login/activity/*'
         ],
     ],
 
@@ -177,27 +163,28 @@ return [
         'connection' => '',
 
         // User tables and model.
-        'users_table' => 'admin_users',
+        'users_table' => 'store',
+        //'users_model' => App\Models\Agent::class,
         'users_model' => Encore\Admin\Auth\Database\Administrator::class,
 
         // Role table and model.
-        'roles_table' => 'admin_roles',
+        'roles_table' => 'store_roles',
         'roles_model' => Encore\Admin\Auth\Database\Role::class,
 
         // Permission table and model.
-        'permissions_table' => 'admin_permissions',
+        'permissions_table' => 'store_permissions',
         'permissions_model' => Encore\Admin\Auth\Database\Permission::class,
 
         // Menu table and model.
-        'menu_table' => 'admin_menu',
+        'menu_table' => 'store_menu',
         'menu_model' => Encore\Admin\Auth\Database\Menu::class,
 
         // Pivot table for table above.
-        'operation_log_table'    => 'admin_operation_log',
-        'user_permissions_table' => 'admin_user_permissions',
-        'role_users_table'       => 'admin_role_users',
-        'role_permissions_table' => 'admin_role_permissions',
-        'role_menu_table'        => 'admin_role_menu',
+        'operation_log_table' => 'store_operation_log',
+        'user_permissions_table' => 'store_user_permissions',
+        'role_users_table' => 'store_role_users',
+        'role_permissions_table' => 'store_role_permissions',
+        'role_menu_table' => 'store_role_menu',
     ],
 
     /*
@@ -211,11 +198,11 @@ return [
     'operation_log' => [
 
         'enable' => false,
-
         /*
          * Only logging allowed methods in the list
          */
-        'allowed_methods' => ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'],
+        'allowed_methods' => ['HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'],
+
 
         /*
          * Routes that will not log to database.
@@ -224,24 +211,21 @@ return [
          * or specific method to path like: get:admin/auth/logs.
          */
         'except' => [
-            'admin/auth/logs*',
+            'store/auth/logs*',
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Indicates whether to check route permission.
     |--------------------------------------------------------------------------
     */
     'check_route_permission' => true,
-
     /*
     |--------------------------------------------------------------------------
     | Indicates whether to check menu roles.
     |--------------------------------------------------------------------------
     */
-    'check_menu_roles'       => true,
-
+    'check_menu_roles' => true,
     /*
     |--------------------------------------------------------------------------
     | User default avatar
@@ -251,7 +235,6 @@ return [
     |
     */
     'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
-
     /*
     |--------------------------------------------------------------------------
     | Admin map field provider
@@ -307,7 +290,7 @@ return [
     | Show version at footer
     |--------------------------------------------------------------------------
     |
-    | Whether to display the version number of laravel-admin at the footer of
+    | Whether to display the version number of laravel-admim at the footer of
     | each page
     |
     */
@@ -325,12 +308,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Menu bind to permission
+    | Menu bind to permissionsymlink
     |--------------------------------------------------------------------------
     |
     | whether enable menu bind to a permission
     */
-    'menu_bind_permission' => true,
+    'menu_bind_permission' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -340,41 +323,34 @@ return [
     | Whether enable default breadcrumb for every page content.
     */
     'enable_default_breadcrumb' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Enable/Disable assets minify
     |--------------------------------------------------------------------------
     */
     'minify_assets' => [
-
         // Assets will not be minified.
         'excepts' => [
-
         ],
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Enable/Disable sidebar menu search
-    |--------------------------------------------------------------------------
+    |------------------------------------------minify_assets--------------------------------
     */
     'enable_menu_search' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Alert message that will displayed on top of the page.
     |--------------------------------------------------------------------------
     */
     'top_alert' => '',
-
     /*
     |--------------------------------------------------------------------------
     | The global Grid action display class.
     |--------------------------------------------------------------------------
     */
-    'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
+    //    'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -384,7 +360,7 @@ return [
     | When you use command `php artisan admin:extend` to generate extensions,
     | the extension files will be generated in this directory.
     */
-    'extension_dir' => app_path('Admin/Extensions'),
+    'extension_dir' => app_path('Store/Extensions'),
 
     /*
     |--------------------------------------------------------------------------
@@ -396,9 +372,6 @@ return [
     |
     */
     'extensions' => [
-        'multitenancy' => [
-            'agent' => config_path('agent.php'),
-            'store' => config_path('store.php'),
-        ],
+
     ],
 ];
